@@ -61,7 +61,7 @@ const MainLayout = () => {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          E-Wallet ©{new Date().getFullYear()} Created by gyf
+          Wallet ©{new Date().getFullYear()} Created by gyf
         </Footer>
       </Layout>
     </Layout>

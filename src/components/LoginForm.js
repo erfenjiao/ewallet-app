@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
 
-import { Form, Input, Button, Checkbox, Typography } from 'antd';
+import { Form, Input, Button, Typography } from 'antd';
 // import 'antd/dist/antd.css';
 
 const {Title} = Typography
