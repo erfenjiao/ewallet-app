@@ -62,11 +62,6 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </Form.Item>
-      {/* <Form.Item>
-        <Checkbox checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)}>
-          记住我
-        </Checkbox>
-      </Form.Item> */}
       <Form.Item>
         <Button type="primary" htmlType="submit" onClick={handleSubmit}>
           登录
