@@ -2,11 +2,11 @@
 
 const TOKENKEY = 'token'
 
-function getToken(token) {
+function setToken(token) {
     localStorage.setItem(TOKENKEY, token)
 }
 
-function setToken() {
+function getToken() {
     return localStorage.getItem(TOKENKEY)
 }
 
