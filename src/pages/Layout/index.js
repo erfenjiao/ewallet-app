@@ -13,7 +13,10 @@
 import { Layout, Menu, Popconfirm } from "antd";
 import { UserOutlined, TransactionOutlined , WalletOutlined, LogoutOutlined} from '@ant-design/icons';
 import './index.scss'
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserInfo } from "@/store/module/user";
 
 const {Header, Sider} = Layout
 
@@ -38,17 +41,32 @@ const items = [
 const GeekLayout = () => {
     const navigate = useNavigate()
     const onMenuClick = (router) => {
-        console.log("菜单被点击了", router)
+        // console.log("菜单被点击了", router)
         const path = router.key
         navigate(path)
     }
+
+    // 反向高亮
+    // 1、获取当前路由路径
+    const location = useLocation()
+    const selectedKeys = location.pathname
+
+    // 触发个人信息 action
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchUserInfo())
+    }, [dispatch])
+
+    // 从 redux 中获取数据
+    const name = useSelector(state => state.user.userInfo.username)
+ 
     return (
         <Layout>
             <Header className="header">
                 <div className="logo"></div>
                 <div className="user-info">
                     <span className="user-name">
-                        user-name
+                        {name}
                     </span>
                     <span className="user-logout">
                         <Popconfirm title="是否确认退出？" okText="退出" cancelText="取消">
@@ -62,7 +80,7 @@ const GeekLayout = () => {
                     <Menu
                         mode="inline"
                         theme="dark"
-                        defaultSelectedKeys={["1"]}
+                        selectedKeys={selectedKeys}
                         items={items}
                         style={{ height: '100%', borderRight: 0 }}
                         onClick={onMenuClick}></Menu>

@@ -8,7 +8,17 @@ const userStore = createSlice({
     name: "user",
     //数据状态
     initialState:{
-        token: getToken() || ''
+        token: getToken() || '',
+        userInfo: {
+            userId: null,
+            username: '',
+            password: '',
+            email: '',
+            phoneNumber: '',
+            create_time: null,
+            update_time: null,
+            token: null
+        }
     },
     // 同步修改方法
     reducers:{
@@ -17,12 +27,15 @@ const userStore = createSlice({
             // loaclstorage 存一份
             //localStorage.setItem('token', action.payload)
             _setToken(action.payload)
+        },
+        setUserInfo (state, action) {
+            state.userInfo = action.payload
         }
     }
 })
 
 // 解构出 actionCreater
-const {setToken} = userStore.actions
+const { setToken, setUserInfo } = userStore.actions
 
 // 获取 reducer 函数
 const userReducer = userStore.reducer
@@ -47,6 +60,22 @@ const fetchLogin = (loginForm)=> {
     }
 }
 
-export {fetchLogin, setToken}
+// 获取个人用户信息-异步方法
+const fetchUserInfo = ()=> {
+    return async(dispatch)=>{
+        try {
+            const userId = localStorage.getItem('userId');
+            //1、发送异步请求
+            const res = await request.get(`/users/${userId}/profile`);
+            console.log("res = "+res)
+            // 2、提交同步方法，进行存入
+            dispatch(setUserInfo(res));
+        } catch (error) {
+            console.error('获取个人用户信息请求失败:', error);
+        }
+    }
+}
+
+export {fetchLogin, fetchUserInfo, setToken}
 
 export default userReducer
