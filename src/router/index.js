@@ -1,5 +1,6 @@
 // 路由配置
 
+import { AuthRoute } from "@/components/AuthRoute/AuthRoute";
 import Layout from "@/pages/Layout";
 import Login from "@/pages/Login";
 
@@ -14,7 +15,7 @@ import {
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout></Layout>
+        element:  <AuthRoute> <Layout></Layout> </AuthRoute>
     },
     {
         path: "/login",
