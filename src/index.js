@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 import { RouterProvider } from 'react-router-dom';
 import store from './store';
 import router from './router'
+import 'normalize.css'
+import './index.scss'
 
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);

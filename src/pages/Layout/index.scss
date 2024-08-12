@@ -1,0 +1,40 @@
+.ant-layout {
+    height: 100%;
+}
+
+.header {
+    padding: 0;
+}
+
+.logo {
+    width: 180px;
+    height: 50px;
+    background: url('~@/assert/logo192.png') no-repeat center / 160px auto;
+}
+
+.layout-content {
+    overflow-y: auto;
+}
+
+.user-info {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-right: 20px;
+    color: rgb(255, 255, 255);
+
+    .user-name {
+        margin-right: 20px;
+    }
+
+    .user-logout {
+        display: inline-block;
+        cursor: pointer;
+    }
+}
+
+.ant-layout-header {
+    padding: 0 !important;
+}
+
+// 盛满整个屏幕
